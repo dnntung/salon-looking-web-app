@@ -1,15 +1,19 @@
-import '../styles/globals.css'
-import {StyledEngineProvider} from "@mui/material";
+import "../styles/globals.css";
+import { StyledEngineProvider } from "@mui/material";
 
 export function reportWebVitals(metric) {
-    console.log(metric)
+    console.log(metric);
 }
 
-function App({Component, pageProps}) {
-    return <StyledEngineProvider injectFirst>
-        {/* Your component tree. Now you can override MUI's styles. */}
-        <Component {...pageProps} />
-    </StyledEngineProvider>
+function App({ Component, pageProps }) {
+    const getLayout = Component.getLayout || ((page) => page);
+
+    return (
+        <StyledEngineProvider injectFirst>
+            {/* Your component tree. Now you can override MUI's styles. */}
+            {getLayout(<Component {...pageProps} />)}
+        </StyledEngineProvider>
+    );
 }
 
-export default App
+export default App;
