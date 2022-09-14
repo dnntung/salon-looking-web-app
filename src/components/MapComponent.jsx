@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 import mapboxgl from "mapbox-gl";
 import React from "react";
+import { MAPBOX_ACCESS_TOKEN } from "src/utils/constants";
 
 export default function MapComponent() {
     const mapContainerRef = React.useRef();
@@ -14,18 +15,19 @@ export default function MapComponent() {
             return;
         }
 
-        mapboxgl.accessToken = "MY_ACCESS_TOKEN";
+        mapboxgl.accessToken = MAPBOX_ACCESS_TOKEN;
         const map = new mapboxgl.Map({
             container: mapContainer,
             style: "mapbox://styles/mapbox/streets-v11",
             center: [lng, lat],
             zoom,
+            attributionControl: false,
         });
 
         map.on("move", () => {
-            setLng(map.current.getCenter().lng.toFixed(4));
-            setLat(map.current.getCenter().lat.toFixed(4));
-            setZoom(map.current.getZoom().toFixed(2));
+            setLng(map.getCenter().lng.toFixed(4));
+            setLat(map.getCenter().lat.toFixed(4));
+            setZoom(map.getZoom().toFixed(2));
         });
 
         return () => {

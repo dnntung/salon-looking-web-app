@@ -1,17 +1,15 @@
-import { Box, Grid } from "@mui/material";
-import Head from "next/head";
+import { Box, CssBaseline, Grid } from "@mui/material";
 import MapComponent from "src/components/MapComponent";
 
 export const LayoutWithMap = ({ children }) => {
     return (
         <>
-            <Head></Head>
-            <Box>
-                <Grid container spacing={2}>
-                    <Grid item xs={4}>
+            <Box className="h-screen">
+                <Grid container className="h-full">
+                    <Grid item xs={3}>
                         {children}
                     </Grid>
-                    <Grid item xs={8}>
+                    <Grid item xs={9}>
                         <MapComponent />
                     </Grid>
                 </Grid>
